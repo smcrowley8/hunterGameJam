@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Mob.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://dodge_assets/art/dark_for_pico8.wav" type="AudioStream" id=5]
 [ext_resource path="res://dodge_assets/art/gameover.wav" type="AudioStream" id=6]
+[ext_resource path="res://TranqDart.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -44,8 +45,12 @@ stream = ExtResource( 5 )
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+
+[node name="TranqDart" parent="." instance=ExtResource( 7 )]
 [connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 [connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="shoot" from="Player" to="." method="fire"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
+[connection signal="hit_orc" from="TranqDart" to="." method="orc_hit"]

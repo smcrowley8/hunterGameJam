@@ -24,6 +24,20 @@ func _on_StartTimer_timeout():
 	$MobTimer.start()
 	$ScoreTimer.start()
 	
+func fire():
+	#instantiate dart
+	#give dart pos
+	#give dart velocity based on player direction
+		#if player flip_h is false, player facing right
+		#if player flip_v is flase, player facing up
+	pass
+func orc_hit():
+	#make orc go to sleep
+	pass
+func ghost_orc_interaction():	
+	#make ghost stop moving
+	#moake orc stop moving
+	pass
 func _on_ScoreTimer_timeout():
 	score += 1
 	$HUD.update_score(score)

@@ -1,8 +1,11 @@
 extends Area2D
 
 signal hit
+signal shoot
 export var speed = 400 #now in property list
 var screen_size
+var ammo=30
+var dart_arr=Array()
 
 
 func start(pos):
@@ -35,6 +38,10 @@ func _process(delta):
 	if Input.is_action_pressed("ui_up"):
 		velocity.y -=1
 		
+	#fireing bullet
+	if Input.is_key_pressed(KEY_SPACE):
+		emit_signal("shoot")
+		pass
 	#animation
 	if velocity.x != 0:
 		$AnimatedSprite.animation="walk"
