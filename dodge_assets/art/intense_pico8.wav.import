@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/intense_pico8.wav-990d960e7bf5bdec93da91aeab148fb4.sample"
+
+[deps]
+
+source_file="res://dodge_assets/art/intense_pico8.wav"
+dest_files=[ "res://.import/intense_pico8.wav-990d960e7bf5bdec93da91aeab148fb4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
