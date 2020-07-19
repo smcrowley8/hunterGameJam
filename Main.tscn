@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Mob.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://dodge_assets/art/intense_pico8.wav" type="AudioStream" id=5]
 [ext_resource path="res://dodge_assets/art/gameover.wav" type="AudioStream" id=6]
 [ext_resource path="res://TranqDart.tscn" type="PackedScene" id=7]
+[ext_resource path="res://dodge_assets/art/dark_for_pico8.wav" type="AudioStream" id=8]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -47,6 +48,9 @@ stream = ExtResource( 5 )
 stream = ExtResource( 6 )
 
 [node name="TranqDart" parent="." instance=ExtResource( 7 )]
+
+[node name="TenseMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
 [connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]

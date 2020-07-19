@@ -28,6 +28,9 @@ func fire():
 	#instantiate dart
 	#give dart pos
 	#give dart velocity based on player direction
+	var left=$Player.AnimatedSprite.flip_h
+	var down=$Player.AnimatedSprite.flip_v
+	
 		#if player flip_h is false, player facing right
 		#if player flip_v is flase, player facing up
 	pass
