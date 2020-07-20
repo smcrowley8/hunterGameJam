@@ -6,11 +6,12 @@ export var speed = 400 #now in property list
 var screen_size
 var ammo=30
 var dart_arr=Array()
-
+var alive=true# in order to see if mouse click is viable
 
 func start(pos):
 	position = pos
 	show()
+	alive=true
 	$CollisionShape2D.disabled=false
 
 
@@ -24,6 +25,7 @@ func _on_Player_body_entered(body):
 func _ready():
 	screen_size  = get_viewport_rect().size
 	hide()
+	alive=false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -39,9 +41,10 @@ func _process(delta):
 		velocity.y -=1
 		
 	#fireing bullet
-	if Input.is_key_pressed(KEY_SPACE):
-		emit_signal("shoot")
-		pass
+	if alive:
+		if Input.is_mouse_button_pressed(1):#1 is left button
+			#2 is right, 3 is middle, wheel up =4, wheel down =6
+			emit_signal("shoot")
 	#animation
 	if velocity.x != 0:
 		$AnimatedSprite.animation="walk"
@@ -59,3 +62,7 @@ func _process(delta):
 	position.y = clamp(position.y, 0, screen_size.y)
 	
 
+
+
+func fire():
+	pass # Replace with function body.

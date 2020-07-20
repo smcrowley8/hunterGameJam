@@ -2,7 +2,7 @@ extends Node2D
 
 export (PackedScene) var Mob
 var score
-
+var darts_fired=[]
 
 func game_over():
 	$ScoreTimer.stop()
@@ -19,6 +19,9 @@ func new_game():
 	$HUD.show_message("Get Ready")
 	$Music.play()
 
+func _on_TranqDart_hit_orc():
+	pass
+
 #connect timer signals
 func _on_StartTimer_timeout():
 	$MobTimer.start()
@@ -26,17 +29,27 @@ func _on_StartTimer_timeout():
 	
 func fire():
 	#instantiate dart
+	darts_fired.append(load('res://TranqDart.tscn').instance())
 	#give dart pos
-	#give dart velocity based on player direction
-	var left=$Player.AnimatedSprite.flip_h
-	var down=$Player.AnimatedSprite.flip_v
+	darts_fired[-1].set_pos($Player.position)
+	#give dart velocity based on mouse position
+	var mouse_pos = get_viewport().get_mouse_position()
+	var dart_vel=Vector2()
+	dart_vel.x=mouse_pos.x - $Player.position.x
+	dart_vel.y=mouse_pos.y - $Player.position.y
+	#do math to find unit vector
+	var temp=sqrt(dart_vel.x * dart_vel.x +dart_vel.y*dart_vel.y)
+	dart_vel.x *= (2/temp)
+	dart_vel.y *= (2/temp)
+	#scale numbers so square root of added squares = bigger velocity than player
+	#print numbers just to see if its ok
+	print("player position at mouse press: ", $Player.position)
+	print("mouse position at mouse press: ", mouse_pos)
+	print("dart vel after math: ", dart_vel)
+	#set direction of dart fired
+	darts_fired[-1].set_dir(dart_vel)
 	
-		#if player flip_h is false, player facing right
-		#if player flip_v is flase, player facing up
-	pass
-func orc_hit():
-	#make orc go to sleep
-	pass
+
 func ghost_orc_interaction():	
 	#make ghost stop moving
 	#moake orc stop moving
